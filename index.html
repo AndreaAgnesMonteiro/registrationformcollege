@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Registration Form Validation</title>
+    <style>
+        body {
+            background-color: #99daff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #87768a;
+        }
+        input[type="text"],
+        input[type="password"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+        label {
+            font-weight: bold;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>College Registration Form Validation</h1>
+    <form onsubmit='return formValidator()' action="submitpage.html">
+        <label for="firstname">First Name (Minimum 8 characters)<font color="red">*</font></label>
+        <input type='text' id='firstname' required/><br /><br />
+
+        <label for="lastname">Last Name<font color="red">*</font></label>
+        <input type='text' id='lastname' required/><br /><br />
+
+        <label for="email">Email Address<font color="red">*</font></label>
+        <input type='email' id='email' required/>
+        <label style="color:red;">(one e-mail id only):</label>
+        <label style="color:blue;">e.g. tronics@gmail.com</label><br /><br/>
+
+        <label for="pass">Password (minimum 8 characters)<font color="red">*</font></label>
+        <input type='password' id='pass' required/><br /><br/>
+
+        <label for="addr">Address<font color="red">*</font></label>
+        <textarea rows="2" id='addr' required></textarea><br /><br/>
+
+        <label for="mobileno">Mobile No<font color="red">*</font></label>
+        <input type='text' id='mobileno' required/><br /><br/>
+
+        <label for="gender">Gender:</label>
+        <input type='radio' name="gender" id="male"><label for="male">Male</label>
+        <input type='radio' name="gender" id="female"><label for="female">Female</label><br/><br />
+
+        <input type='submit' value='Submit' />
+        <input type='reset' value='Reset' />
+    </form>
+
+    <script>
+        function formValidator() {
+            var firstname = document.getElementById('firstname');
+            var lastname = document.getElementById('lastname');
+            var email = document.getElementById('email');
+            var pass = document.getElementById('pass');
+            var addr = document.getElementById('addr');
+            var mobileno = document.getElementById('mobileno');
+
+            if (firstname.value.length < 8) {
+                alert("First Name must be at least 8 characters long.");
+                firstname.focus();
+                return false;
+            }
+
+            if (!lastname.value.match(/^[a-zA-Z]+$/)) {
+                alert("Please enter only letters for your Lastname");
+                lastname.focus();
+                return false;
+            }
+
+            if (!email.value.match(/^[\w\-\.\+]+\@[a-zA-Z0-9\.\-]+\.[a-zA-z0-9]{2,4}$/)) {
+                alert("Please enter a valid email address");
+                email.focus();
+                return false;
+            }
+
+            if (pass.value.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                pass.focus();
+                return false;
+            }
+
+            if (!addr.value) {
+                alert("Please enter the address");
+                addr.focus();
+                return false;
+            }
+
+            if (!mobileno.value.match(/^\d{10}$/)) {
+                alert("Please enter a valid mobile number (10 digits only)");
+                mobileno.focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+</html>
